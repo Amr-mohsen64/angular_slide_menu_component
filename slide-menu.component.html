@@ -1,0 +1,26 @@
+<div class="slide-menu" [@slideInOut]>
+  <ng-container *ngTemplateOutlet="renderMenuItems; context: { items: menuItems }"></ng-container>
+
+  <ng-template #renderMenuItems let-items="items">
+    <div *ngIf="!selectedItem" class="parent-items">
+      <ul class="menu-items" [@slideBack]>
+        <li *ngFor="let item of menuItems" [ngStyle]="{ 'cursor': item.children ? 'pointer' : 'default' }">
+          <div class="parent-item" (click)="selectItem(item)">
+            {{ item.name }} <span *ngIf=" item.children"> ->> </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+  <div *ngIf="selectedItem" class="child-items">
+    <ul class="menu-items">
+      <li class="back-button" (click)="deselectItem()" [@slideBack]>
+        <= </li>
+      <li [ngStyle]="selectedItem.children  && {'background-color': 'red'}"
+        [ngStyle]="{ 'cursor': childItem.children ? 'pointer' : 'default' }" (click)="selectItem(childItem)"
+        *ngFor="let childItem of selectedItem.children" [@slideBack]>
+        {{ childItem.name }} <span *ngIf=" childItem.children"> ->> </span>
+      </li>
+    </ul>
+  </div>
+</div>

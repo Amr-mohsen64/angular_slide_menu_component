@@ -1,0 +1,52 @@
+.slide-menu {
+  position: relative;
+  height: 100px;
+}
+
+.menu-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+.parent-items {
+  width: 200px;
+  background-color: #f1f1f1;
+  overflow: auto;
+}
+
+.child-items {
+  width: 200px;
+
+  background-color: #f1f1f1;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.child-items li {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.child-items li.back-button {
+  cursor: pointer;
+  background-color: #ddd;
+}
+
+.child-items li.back-button:hover {
+  background-color: #bbb;
+}
+
+.child-items li {
+  margin-top: 5px;
+}
+
+.child-items li:not(.back-button).ng-trigger-slideInOut {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.child-items li.back-button.ng-trigger-slideBack,
+.parent-items.ng-trigger-slideRight {
+  opacity: 1;
+  transform: translateX(0);
+}
